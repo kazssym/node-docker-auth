@@ -10,7 +10,7 @@ services:
   test:
     image: node:6
     volumes:
-      - $HOME/.npmrc:/root/.npmrc:ro
+      - $HOME/.npmrc:/root/.npmrc:rw
       - .:/usr/src/docker-auth-client-node:rw
     working_dir: /usr/src/docker-auth-client-node
     command: npm test
