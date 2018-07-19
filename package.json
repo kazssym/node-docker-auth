@@ -3,13 +3,14 @@
     "version": "1.0.0-1",
     "description": "Experimental Docker Authorization client",
     "keywords": [
+        "docker",
         "experimental",
         "work-in-progress"
     ],
     "license": "MIT",
     "repository": {
         "type": "hg",
-        "url": "https://bitbucket.org/linuxfront/functions-azure"
+        "url": "https://bitbucket.org/kazssym/docker-auth-client-node"
     },
     "scripts": {
         "test": "node ./test.js"
