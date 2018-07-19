@@ -1,0 +1,20 @@
+{
+    "name": "@kazssym/docker-auth",
+    "version": "1.0.0-1",
+    "description": "Experimental Docker Authorization client",
+    "keywords": [
+        "experimental",
+        "work-in-progress"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "hg",
+        "url": "https://bitbucket.org/linuxfront/functions-azure"
+    },
+    "scripts": {
+        "test": "node ./test.js"
+    },
+    "engines": {
+        "node": ">=6.5"
+    }
+}
