@@ -28,7 +28,7 @@ const url = require("url");
 /**
  * HTTP request builder.
  *
- * @param {(String | Object)} location resource location
+ * @param {(string | Object)} location resource location
  */
 class RequestBuilder
 {
@@ -54,7 +54,7 @@ class RequestBuilder
     /**
      * Sets the acceptable media types.
      *
-     * @param {String} types acceptable media types
+     * @param {string} types acceptable media types
      * @return {RequestBuilder} `this`
      */
     accept(types)
@@ -87,7 +87,7 @@ class RequestBuilder
 /**
  * Makes a `GET` request for a JSON value.
  *
- * @param {(String | Object)} location resource location
+ * @param {(string | Object)} location resource location
  * @return {Promise} promise object to receive a JSON object
  */
 function _get(location)
@@ -122,8 +122,8 @@ function _get(location)
 /**
  * Requests an access token for a Docker Registry.
  *
- * @param {String} challenge as received from a Docker Registry
- * @param {{scope: ?String}} [options]
+ * @param {string} challenge as received from a Docker Registry
+ * @param {{scope: ?string}} [options]
  * @return {Promise} promise object to receive an access token
  */
 function requestToken(challenge, options)
