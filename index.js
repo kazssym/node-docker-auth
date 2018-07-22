@@ -122,15 +122,14 @@ function _get(location)
 /**
  * Requests an access token for a Docker Registry.
  *
- * @param {{challenge: String, scope: ?String}} options
+ * @param {String} challenge as received from a Docker Registry
+ * @param {{scope: ?String}} [options]
  * @return {Promise} promise object to receive an access token
  */
-function requestToken(options)
+function requestToken(challenge, options)
 {
-    if (typeof options === "string") {
-        options = {
-            challenge: options,
-        };
+    if (options == null) {
+        options = {};
     }
 
     // tchar = [\w!#$%&'*+.^\\\|~-]
@@ -141,7 +140,7 @@ function requestToken(options)
     const RE2 =
         /([\w!#$%&'*+.^\\\|~-]+)\s*=\s*(?:([\w!#$%&'*+.^\\\|~-]+)|"([^"]*)")/g;
     let m1;
-    while ((m1 = RE1.exec(options.challenge)) != null) {
+    while ((m1 = RE1.exec(challenge)) != null) {
         let scheme = m1[1].toLowerCase();
         let params = {};
         let m2;
