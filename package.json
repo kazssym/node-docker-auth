@@ -6,6 +6,9 @@
         "docker",
         "authorization"
     ],
+    "bugs": {
+        "url": "https://bitbucket.org/kazssym/docker-auth-client-node/issues"
+    },
     "license": "MIT",
     "repository": {
         "type": "hg",
