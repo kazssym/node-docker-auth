@@ -48,15 +48,18 @@ request.on("response", (response) => {
 
 // _get
 auth._get(TEST_URL).then((value) => {
-    console.log("Content: %j", value);
+    assert.equal(value["args"]["q"], "test");
 }).catch((reason) => {
-    throw reason;
+    assert.fail(reason);
 });
 
 // requestToken
 auth.requestToken(" Bearer realm=\"https://auth.docker.io/token\"" +
     ",service=\"registry.docker.io\"").then((value) => {
-    console.log("Content: %j", value);
+    assert.strictEqual(typeof value["token"], "string");
+    assert.strictEqual(typeof value["access_token"], "string");
+    assert.strictEqual(typeof value["issued_at"], "string");
+    assert.strictEqual(typeof value["expires_in"], "number");
 }).catch((reason) => {
-    throw reason;
+    assert.fail(reason);
 });
