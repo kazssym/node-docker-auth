@@ -1,4 +1,4 @@
-// docker-auth/index.js
+// index.js - main module script of docker-auth
 // Copyright (C) 2017-2018 Kaz Nishimura
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,9 +24,12 @@
 "use strict";
 
 const url = require("url");
-const query = require("querystring");
 
-/// HTTP request builder.
+/**
+ * HTTP request builder.
+ *
+ * @param {(String | Object)} location resource location
+ */
 class RequestBuilder
 {
     constructor(location)
@@ -48,13 +51,23 @@ class RequestBuilder
         this._queryString = location.search.replace(/^\?/, "");
     }
 
-    /// Sets the acceptable media types.
+    /**
+     * Sets the acceptable media types.
+     *
+     * @param {String} types acceptable media types
+     * @return {RequestBuilder} `this`
+     */
     accept(types)
     {
         this._accept = types;
         return this;
     }
 
+    /**
+     * Builds a request.
+     *
+     * @return {http.ClientRequest} request
+     */
     build()
     {
         let options = this.options;
@@ -71,7 +84,12 @@ class RequestBuilder
     }
 }
 
-/// Makes a 'GET' request for a JSON value.
+/**
+ * Makes a `GET` request for a JSON value.
+ *
+ * @param {(String | Object)} location resource location
+ * @return {Promise} promise object to receive a JSON object
+ */
 function _get(location)
 {
     return new Promise((resolve, reject) => {
@@ -101,6 +119,12 @@ function _get(location)
     });
 }
 
+/**
+ * Requests an access token for a Docker Registry.
+ *
+ * @param {{challenge: String, scope: ?String}} options
+ * @return {Promise} promise object to receive an access token
+ */
 function requestToken(options)
 {
     if (typeof options === "string") {
