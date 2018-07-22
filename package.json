@@ -1,11 +1,10 @@
 {
     "name": "@kazssym/docker-auth",
-    "version": "1.0.0-2",
-    "description": "Experimental Docker Authorization client",
+    "version": "1.0.0-3",
+    "description": "Client module for the Docker Authorization Server.",
     "keywords": [
         "docker",
-        "experimental",
-        "work-in-progress"
+        "authorization"
     ],
     "license": "MIT",
     "repository": {
