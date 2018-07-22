@@ -29,6 +29,7 @@ const url = require("url");
  * HTTP request builder.
  *
  * @param {(string | Object)} location resource location
+ * @private
  */
 class RequestBuilder
 {
@@ -89,6 +90,7 @@ class RequestBuilder
  *
  * @param {(string | Object)} location resource location
  * @return {Promise} promise object to receive a JSON object
+ * @private
  */
 function _get(location)
 {
