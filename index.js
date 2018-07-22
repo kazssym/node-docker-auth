@@ -72,47 +72,36 @@ class RequestBuilder
 }
 
 /// Makes a 'GET' request for a JSON value.
-function _get(location, callback)
+function _get(location)
 {
-    let builder = new RequestBuilder(location);
-    builder.accept("application/json");
+    return new Promise((resolve, reject) => {
+        let builder = new RequestBuilder(location);
+        builder.accept("application/json");
 
-    let request = builder.build();
-    if (callback != null) {
-        request.on("error",
-            (error) => {
-                callback(error);
-            }
-        );
-        request.on("response",
-            (response) => {
-                let content = "";
-                response.on("data",
-                    (data) => {
-                        content = content + data;
-                    }
-                )
-                response.on("end",
-                    () => {
-                        switch (response.statusCode) {
-                        case 200:
-                        case 401:
-                        case 404:
-                            callback(null, JSON.parse(content),
-                                response.statusCode);
-                            break;
-                        default:
-                            callback(new Error(response.statusMessage));
-                        }
-                    }
-                );
-            }
-        );
-    }
-    request.end();
+        let request = builder.build();
+        request.on("error", (error) => {
+            reject(error);
+        }).on("response", (response) => {
+            let content = "";
+            response.on("data", (data) => {
+                content = content + data;
+            });
+            response.on("end", () => {
+                switch (response.statusCode) {
+                case 200:
+                case 401:
+                case 404:
+                    resolve(JSON.parse(content), response.statusCode);
+                    break;
+                default:
+                    reject("Response: " + response.statusMessage);
+                }
+            });
+        }).end();
+    });
 }
 
-function requestToken(options, callback)
+function requestToken(options)
 {
     if (typeof options === "string") {
         options = {
@@ -141,10 +130,10 @@ function requestToken(options, callback)
             if (scope != null) {
                 location += "&scope=" + scope;
             }
-            _get(location, () => {
-                });
+            return _get(location);
         }
     }
+    throw new Error("No supported scheme found");
 }
 
 module.exports.RequestBuilder = RequestBuilder;

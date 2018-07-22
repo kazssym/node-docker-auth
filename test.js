@@ -38,30 +38,25 @@ assert.equal(builder._queryString, "q=test");
 
 let request = builder.build();
 request.on("response", (response) => {
-        let content = "";
-        response.on("data", (data) => {
-                content += data;
-            })
-            .on("end", () => {
-                assert.equal(response.statusCode, 200);
-            });
-    })
-    .end();
+    let content = "";
+    response.on("data", (data) => {
+        content += data;
+    }).on("end", () => {
+        assert.equal(response.statusCode, 200);
+    });
+}).end();
 
 // _get
-auth._get(TEST_URL, (error, content) => {
-        if (error) {
-            throw error;
-        }
-        console.log("Content: %j", content);
-    });
+auth._get(TEST_URL).then((value) => {
+    console.log("Content: %j", value);
+}).catch((reason) => {
+    throw reason;
+});
 
 // requestToken
-assert.strictEqual(typeof auth.requestToken, "function");
-
 auth.requestToken(" Bearer realm=\"https://auth.docker.io/token\"" +
-    ",service=\"registry.docker.io\"", (error) => {
-        if (error) {
-            throw error;
-        }
-    });
+    ",service=\"registry.docker.io\"").then((value) => {
+    console.log("Content: %j", value);
+}).catch((reason) => {
+    throw reason;
+});
