@@ -29,7 +29,7 @@ const auth = require(".");
 const TEST_URL = "https://httpbin.org:443/get?q=test";
 
 // RequestBuilder
-let builder = new auth.RequestBuilder(TEST_URL);
+let builder = new auth._RequestBuilder(TEST_URL);
 assert.equal(builder.options.protocol, "https:");
 assert.equal(builder.options.hostname, "httpbin.org");
 assert.equal(builder.options.port, 443);

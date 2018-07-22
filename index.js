@@ -31,7 +31,7 @@ const url = require("url");
  * @param {(string | Object)} location resource location
  * @private
  */
-class RequestBuilder
+class _RequestBuilder
 {
     constructor(location)
     {
@@ -56,7 +56,7 @@ class RequestBuilder
      * Sets the acceptable media types.
      *
      * @param {string} types acceptable media types
-     * @return {RequestBuilder} `this`
+     * @return {_RequestBuilder} `this`
      */
     accept(types)
     {
@@ -95,7 +95,7 @@ class RequestBuilder
 function _get(location)
 {
     return new Promise((resolve, reject) => {
-        let builder = new RequestBuilder(location);
+        let builder = new _RequestBuilder(location);
         builder.accept("application/json");
 
         let request = builder.build();
@@ -161,6 +161,6 @@ function requestToken(challenge, options)
     throw new Error("No supported scheme found");
 }
 
-module.exports.RequestBuilder = RequestBuilder;
+module.exports._RequestBuilder = _RequestBuilder;
 module.exports._get = _get;
 module.exports.requestToken = requestToken;
