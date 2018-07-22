@@ -16,9 +16,9 @@ This software is provided under the terms and conditions of the
 [Authorization Server]: https://docs.docker.com/registry/spec/auth/token/#authorization-server-endpoint-descriptions
 [MIT]: https://opensource.org/licenses/MIT
 
-[![(Open Issues)](https://img.shields.io/bitbucket/issues/kazssym/docker-auth-client-node.svg)][open issues]
-[![(Build Status)](https://linuxfront-functions.azurewebsites.net/api/bitbucket/build/kazssym/docker-auth-client-node?branch=master)][pipelines]
+[![(Open Issues)](https://img.shields.io/bitbucket/issues/kazssym/docker-auth-node.svg)][open issues]
+[![(Build Status)](https://linuxfront-functions.azurewebsites.net/api/bitbucket/build/kazssym/docker-auth-node?branch=master)][pipelines]
 ![npm](https://img.shields.io/npm/v/@kazssym/docker-auth.svg)
 
-[Open issues]: https://bitbucket.org/kazssym/docker-auth-client-node/issues?status=new&status=open
-[Pipelines]: https://bitbucket.org/kazssym/docker-auth-client-node/addon/pipelines/home
+[Open issues]: https://bitbucket.org/kazssym/docker-auth-node/issues?status=new&status=open
+[Pipelines]: https://bitbucket.org/kazssym/docker-auth-node/addon/pipelines/home
