@@ -128,11 +128,11 @@ function requestToken(options, callback)
     const RE2 =
         /([\w!#$%&'*+.^\\\|~-]+)\s*=\s*(?:([\w!#$%&'*+.^\\\|~-]+)|"([^"]*)")/g;
     let m1;
-    while (m1 = RE1.exec(options.challenge)) {
+    while ((m1 = RE1.exec(options.challenge)) != null) {
         let scheme = m1[1].toLowerCase();
         let params = {};
         let m2;
-        while (m2 = RE2.exec(m1[2])) {
+        while ((m2 = RE2.exec(m1[2])) != null) {
             params[m2[1].toLowerCase()] = m2[2] || m2[3];
         }
         if (scheme == "bearer" && "realm" in params && "service" in params) {
