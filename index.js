@@ -1,5 +1,5 @@
 // index.js - main module script of docker-auth
-// Copyright (C) 2017-2018 Kaz Nishimura
+// Copyright (C) 2017-2020 Kaz Nishimura
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -84,6 +84,7 @@ class _RequestBuilder
         return transport.request(options);
     }
 }
+module.exports._RequestBuilder = _RequestBuilder;
 
 /**
  * Makes a `GET` request for a JSON value.
@@ -120,6 +121,7 @@ function _get(location)
         }).end();
     });
 }
+module.exports._get = _get;
 
 /**
  * Requests an access token for a Docker Registry.
@@ -160,7 +162,4 @@ function requestToken(challenge, options)
     }
     throw new Error("No supported scheme found");
 }
-
-module.exports._RequestBuilder = _RequestBuilder;
-module.exports._get = _get;
 module.exports.requestToken = requestToken;
