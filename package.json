@@ -7,17 +7,21 @@
         "authorization"
     ],
     "bugs": {
-        "url": "https://bitbucket.org/kazssym/docker-auth-node/issues"
+        "url": "https://bitbucket.org/kazssym/node-docker-auth/issues"
     },
     "license": "MIT",
+    "author": {
+        "name": "Kaz Nishimura",
+        "email": "kazssym@linuxfront.com"
+    },
     "repository": {
-        "type": "hg",
-        "url": "https://bitbucket.org/kazssym/docker-auth-node"
+        "type": "git",
+        "url": "https://github.com/kazssym/node-docker-auth.git"
     },
     "scripts": {
         "test": "node ./test.js"
     },
     "engines": {
-        "node": ">=6.5"
+        "node": ">=10.0.0"
     }
 }
