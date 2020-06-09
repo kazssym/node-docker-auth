@@ -1,0 +1,60 @@
+# azure-pipelines.yml - configuration for Azure Pipelines
+# Copyright (C) 2020 Kaz Nishimura
+#
+# Copying and distribution of this file, with or without modification, are
+# permitted in any medium without royalty provided the copyright notice and
+# this notice are preserved.  This file is offered as-is, without any warranty.
+---
+variables:
+  distName: kazssym-docker-auth-2.0.0
+trigger:
+  - master
+  - release/*
+  - feature/*
+stages:
+  - stage: Default
+    jobs:
+      - job: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: ~10
+          - bash: |
+              npm install
+            displayName: Install
+          - bash: |
+              npm test
+            displayName: Test
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+          - bash: |
+              npm pack || exit $?
+              mkdir -p _dist
+              mv -f '$(distName)'.* _dist/
+            displayName: Make package archive
+          - publish: _dist
+            artifact: dist
+  - stage: Release
+    dependsOn: Default
+    condition:
+      and(succeeded(),
+        startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
+    jobs:
+      - job: Upload
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - download: current
+            artifact: dist
+          - task: NodeTool@0
+            inputs:
+              versionSpec: ~10
+          - task: npmAuthenticate@0
+            inputs:
+              workingFile: .npmrc
+              customEndpoint: npmjs
+          - bash: |
+              npm publish $(Agent.BuildDirectory)/dist/$(distName).tgz
+            displayName: Upload
