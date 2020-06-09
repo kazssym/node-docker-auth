@@ -1,7 +1,5 @@
 syntax: regexp
-(^|/)node_modules/
-(^|/)\.env$
-\.tgz$
+(^|/)node_modules$
 \.rej$
 \.orig$
 ~$
